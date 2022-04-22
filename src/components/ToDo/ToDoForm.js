@@ -17,6 +17,7 @@ const ToDoForm = (props) => {
         setEnteredValue(event.target.value);
     };
 
+    //Form Handler
     const formSubmitHandler = event => {
         event.preventDefault();
         //If the user hasn't inputted any text then cancel the action, but we want a visual indicator that the user has done something wrong.
@@ -25,14 +26,18 @@ const ToDoForm = (props) => {
             return;
         }
         props.onAddToDo(enteredValue);
+
+        //Once user has added something, remove what was in the box and reset it back to a black section.
+        setEnteredValue('');
     };
 
     return (
         <div>
             <form onSubmit={formSubmitHandler}>
-                <div className="form-control">
+                {/*Dynamically styling classes*/}
+                <div className={`form-control ${!usersInputIsValid ? 'invalid': ''}`} >
                     <label>What do you want to do today?</label>
-                    <input style={{borderStyle: !usersInputIsValid ? 'red' : 'black', background: !usersInputIsValid ? 'lightpink' : 'transparent'}} type="text" onChange={toDoInputChangeHandler}/>
+                    <input type="text" value={enteredValue} onChange={toDoInputChangeHandler}/>
                 </div>
                 <Button type="submit">Add</Button>
             </form>
