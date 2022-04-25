@@ -1,4 +1,4 @@
-import './ToDoForm.css';
+import'./ToDoForm.css';
 import React, {useState} from "react";
 import Button from "../UI/Button";
 
@@ -35,7 +35,8 @@ const ToDoForm = (props) => {
         <div>
             <form onSubmit={formSubmitHandler}>
                 {/*Dynamically styling classes*/}
-                <div className={`form-control ${!usersInputIsValid ? 'invalid': ''}`} >
+                {/*CSS Modules: className={`$ {styles['form-control']} ${!usersInputIsValid && styles.invalid}`}*/}
+                <div className={`form-control ${!usersInputIsValid ? 'invalid': ''}`}>
                     <label>What do you want to do today?</label>
                     <input type="text" value={enteredValue} onChange={toDoInputChangeHandler}/>
                 </div>
